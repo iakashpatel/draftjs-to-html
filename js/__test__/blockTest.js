@@ -51,14 +51,14 @@ describe("getStylesAtOffset test suite", () => {
       BGCOLOR: ["rgb(99,199,199)", "rgb(28,189,176)"],
       FONTSIZE: [10, 20],
       FONTFAMILY: ["Arial", "Georgia"],
-      PADDING: ["10px", "20px"],
+      PADDING: ["10", "20"],
     };
     let styles = getStylesAtOffset(inlineStyles, 0);
     assert.equal(styles.COLOR, "rgb(97,189,109)");
     assert.equal(styles.BGCOLOR, "rgb(99,199,199)");
     assert.equal(styles.FONTSIZE, 10);
     assert.equal(styles.FONTFAMILY, "Arial");
-    assert.equal(styles.PADDING, "10px");
+    assert.equal(styles.PADDING, 10);
     assert.equal(styles.ITALIC, undefined);
     assert.equal(styles.UNDERLINE, true);
     assert.equal(styles.SUBSCRIPT, true);
@@ -69,7 +69,7 @@ describe("getStylesAtOffset test suite", () => {
     assert.equal(styles.BGCOLOR, "rgb(28,189,176)");
     assert.equal(styles.FONTSIZE, 20);
     assert.equal(styles.FONTFAMILY, "Georgia");
-    assert.equal(styles.PADDING, "20px");
+    assert.equal(styles.PADDING, 20);
     assert.equal(styles.ITALIC, undefined);
     assert.equal(styles.UNDERLINE, undefined);
     assert.equal(styles.SUBSCRIPT, undefined);
@@ -88,7 +88,7 @@ describe("sameStyleAsPrevious test suite", () => {
       BGCOLOR: ["rgb(97,189,109)", "rgb(26,188,156)", "rgb(26,188,156)"],
       FONTSIZE: [10, 10, 20],
       FONTFAMILY: ["Arial", "Arial", "Georgia"],
-      PADDING: ["10px","20px","30px"],
+      PADDING: [10, 10, 20],
       length: 3,
     };
     let sameStyled = sameStyleAsPrevious(
@@ -113,7 +113,7 @@ describe("sameStyleAsPrevious test suite", () => {
       BGCOLOR: ["rgb(97,189,109)", "rgb(26,188,156)", "rgb(26,188,156)"],
       FONTSIZE: [10, 10, 20],
       FONTFAMILY: ["Arial", "Arial", "Georgia"],
-      PADDING: ["10px","20px","30px"],
+      PADDING: [10, 10, 20],
     };
     const sameStyled = sameStyleAsPrevious(
       inlineStyles,
@@ -132,7 +132,7 @@ describe("sameStyleAsPrevious test suite", () => {
       COLOR: ["rgb(97,189,109)", "rgb(26,188,156)", "rgb(26,188,156)"],
       FONTSIZE: [10, 10, 20],
       FONTFAMILY: ["Arial", "Arial", "Georgia"],
-      PADDING: ["10px","20px","30px"],
+      PADDING: [10, 10, 20],
     };
     const sameStyled = sameStyleAsPrevious(
       inlineStyles,
@@ -164,7 +164,7 @@ describe("addStylePropertyMarkup test suite", () => {
         BGCOLOR: "pink",
         FONTSIZE: 10,
         FONTFAMILY: "Arial",
-        PADDING: "10px"
+        PADDING: 10
       },
       "test"
     );
@@ -178,7 +178,7 @@ describe("addStylePropertyMarkup test suite", () => {
     assert.equal(markup, '<span style="background-color: pink;">test</span>');
     markup = addStylePropertyMarkup({ FONTFAMILY: "Arial" }, "test");
     assert.equal(markup, '<span style="font-family: Arial;">test</span>');
-    markup = addStylePropertyMarkup({ PADDING: "10px" }, "test");
+    markup = addStylePropertyMarkup({ PADDING: "10" }, "test");
     assert.equal(markup, '<span style="padding: 10px;">test</span>');
     markup = addStylePropertyMarkup({ FONTSIZE: "medium" }, "test");
     assert.equal(markup, '<span style="font-size: medium;">test</span>');

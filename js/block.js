@@ -300,7 +300,11 @@ function getSectionText(text) {
 export function addStylePropertyMarkup(styles, text) {
   if (
     styles &&
-    (styles.COLOR || styles.BGCOLOR || styles.FONTSIZE || styles.FONTFAMILY || styles.PADDING)
+    (styles.COLOR ||
+      styles.BGCOLOR ||
+      styles.FONTSIZE ||
+      styles.FONTFAMILY ||
+      styles.PADDING)
   ) {
     let styleString = 'style="';
     if (styles.COLOR) {
@@ -318,7 +322,9 @@ export function addStylePropertyMarkup(styles, text) {
       styleString += `font-family: ${styles.FONTFAMILY};`;
     }
     if (styles.PADDING) {
-      styleString += `padding: ${styles.PADDING};`;
+      styleString += `padding: ${styles.PADDING}${
+        /^\d+$/.test(styles.PADDING) ? "px" : ""
+      };`;
     }
     styleString += '"';
     return `<span ${styleString}>${text}</span>`;
