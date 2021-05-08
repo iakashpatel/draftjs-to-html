@@ -51,14 +51,14 @@ describe("getStylesAtOffset test suite", () => {
       BGCOLOR: ["rgb(99,199,199)", "rgb(28,189,176)"],
       FONTSIZE: [10, 20],
       FONTFAMILY: ["Arial", "Georgia"],
-      PADDING: ["10", "20"],
+      PADDING: ["10px 20px", "20"],
     };
     let styles = getStylesAtOffset(inlineStyles, 0);
     assert.equal(styles.COLOR, "rgb(97,189,109)");
     assert.equal(styles.BGCOLOR, "rgb(99,199,199)");
     assert.equal(styles.FONTSIZE, 10);
     assert.equal(styles.FONTFAMILY, "Arial");
-    assert.equal(styles.PADDING, 10);
+    assert.equal(styles.PADDING, "10px 20px");
     assert.equal(styles.ITALIC, undefined);
     assert.equal(styles.UNDERLINE, true);
     assert.equal(styles.SUBSCRIPT, true);
@@ -180,6 +180,8 @@ describe("addStylePropertyMarkup test suite", () => {
     assert.equal(markup, '<span style="font-family: Arial;">test</span>');
     markup = addStylePropertyMarkup({ PADDING: "10" }, "test");
     assert.equal(markup, '<span style="padding: 10px;">test</span>');
+    markup = addStylePropertyMarkup({ PADDING: "10px 20px" }, "test");
+    assert.equal(markup, '<span style="padding: 10px 20px;">test</span>');
     markup = addStylePropertyMarkup({ FONTSIZE: "medium" }, "test");
     assert.equal(markup, '<span style="font-size: medium;">test</span>');
     markup = addStylePropertyMarkup({ FONTSIZE: "24" }, "test");
